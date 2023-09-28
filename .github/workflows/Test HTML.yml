@@ -1,12 +1,23 @@
 name: Test HTML
 
-on: [push]
+on: 
+  push:
+    branches:
+    - main
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Check html
-      run: npx htmlhint "Learn HTML.html"
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+
+    - name: npm install, build and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm test
