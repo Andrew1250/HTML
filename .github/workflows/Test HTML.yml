@@ -1,8 +1,6 @@
 name: Test HTML
 
-on: 
-  push:
-    branches: ['main']
+on: [push]
 jobs:
   build:
 
@@ -10,12 +8,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-
-    - name: npm install, build and test
-      run: |
-        npm install
-        npm test
+    - name: Check html
+      run: npx htmlhint "Learn HTML"
