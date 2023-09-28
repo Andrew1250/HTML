@@ -15,10 +15,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Depencies
       run: npm install
-    - name: build
-      run: |
-        npm run build
     - name: Test HTML
       run: |
         npm run coverage
+    - name: build
+      run: |
+        npm run build
         
