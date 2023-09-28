@@ -1,12 +1,24 @@
 name: Test HTML
 
-on: [push]
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [main]
+    
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Check html
-      run: npx htmlhint "Learn HTML"
+    - uses: actions/checkout@v2
+    - name: Install Depencies
+      run: npm install
+    - name: build
+      run: |
+        npm run build
+    - name: Test HTML
+      run: |
+        npm run coverage
+        
